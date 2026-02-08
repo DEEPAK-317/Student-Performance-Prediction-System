@@ -1,0 +1,10 @@
+requirements_safe.txt
+notebook/
+venv/
+.git/
+catboost_info/
+logs/
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
