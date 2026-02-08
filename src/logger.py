@@ -2,16 +2,14 @@ import logging
 import os
 from datetime import datetime
 
-LOG_FILE=f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log"
-logs_path=os.path.join(os.getcwd(),"logs",LOG_FILE)
-os.makedirs(logs_path,exist_ok=True)
-
-LOG_FILE_PATH=os.path.join(logs_path,LOG_FILE)
+# Check if running on Vercel (or any environment where we can't write to filesystem freely)
+# Vercel infrastructure usually sets some environment variables, or we can just rely on try-except blocks
+# But for simplicity, we will just log to console (stream) which is best practice for serverless
 
 logging.basicConfig(
-    filename=LOG_FILE_PATH,
     format="[ %(asctime)s ] %(lineno)d %(name)s - %(levelname)s - %(message)s",
     level=logging.INFO,
-
-
+    handlers=[
+        logging.StreamHandler()
+    ]
 )
